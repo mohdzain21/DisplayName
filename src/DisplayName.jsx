@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function NameForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [fullName, setFullName] = useState('');
+    const [fullName, setFullName] = useState('Full Name Display');
+
+    useEffect(() => {
+        // Set the full name display to empty when the component mounts
+        setFullName('');
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
