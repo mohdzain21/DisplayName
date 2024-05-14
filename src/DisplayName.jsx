@@ -15,8 +15,6 @@ function NameForm() {
         if (firstName.trim() !== '' && lastName.trim() !== '') {
             const fullName = `${firstName} ${lastName}`;
             setFullName(fullName);
-        } else {
-            setFullName('');
         }
     };
 
