@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function NameForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [fullName, setFullName] = useState('');
+    const [fullName, setFullName] = useState('Full Name Display');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,11 +32,9 @@ function NameForm() {
                 />
                 <button type="submit">Submit</button>
             </form>
-            {fullName && (
-                <div id="fullname">
-                    <strong>Full Name:</strong> {fullName}
-                </div>
-            )}
+            <div id="fullname">
+                <strong>{fullName}</strong>
+            </div>
         </div>
     );
 }
