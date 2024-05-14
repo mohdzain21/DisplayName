@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 function NameForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [fullName, setFullName] = useState('Full Name Display');
+    const [fullName, setFullName] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (firstName.trim() !== '' && lastName.trim() !== '') {
             const fullName = `${firstName} ${lastName}`;
             setFullName(fullName);
+        } else {
+            setFullName('');
         }
     };
 
@@ -32,9 +34,11 @@ function NameForm() {
                 />
                 <button type="submit">Submit</button>
             </form>
-            <div id="fullname">
-                <strong>{fullName}</strong>
-            </div>
+            {fullName && (
+                <div id="fullname">
+                    <strong>Full Name: {fullName}</strong>
+                </div>
+            )}
         </div>
     );
 }
