@@ -17,7 +17,7 @@ function NameForm() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autocomplete="on">
         <label htmlFor="first-name">First Name:</label>
         <input
           type="text"
@@ -25,7 +25,8 @@ function NameForm() {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
-          data-cy="first-name-input" // Add data-cy attribute for Cypress
+          autocomplete="given-name"
+          data-cy="first-name-input"
         />
 
         <label htmlFor="last-name">Last Name:</label>
@@ -35,13 +36,14 @@ function NameForm() {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
-          data-cy="last-name-input" // Add data-cy attribute for Cypress
+          autocomplete="family-name"
+          data-cy="last-name-input"
         />
 
-        <button type="submit" data-cy="submit-btn">Submit</button> {/* Add data-cy attribute for Cypress */}
+        <button type="submit" data-cy="submit-btn">Submit</button>
       </form>
 
-      {isSubmitted && <div id="result" data-cy="result">Full Name: {fullName}</div>} {/* Add data-cy attribute for Cypress */}
+      {isSubmitted && <div id="result" data-cy="result">Full Name: {fullName}</div>}
     </div>
   );
 }
