@@ -5,32 +5,43 @@ function NameForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [fullName, setFullName] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = () => {
-    setFullName(`${firstName} ${lastName}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (firstName && lastName) {
+      setFullName(`${firstName} ${lastName}`);
+      setIsSubmitted(true);
+    }
   };
 
   return (
     <div className="container">
-      <label htmlFor="first-name">First Name:</label>
-      <input
-        type="text"
-        id="first-name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="first-name">First Name:</label>
+        <input
+          type="text"
+          id="first-name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+          data-cy="first-name-input" // Add data-cy attribute for Cypress
+        />
 
-      <label htmlFor="last-name">Last Name:</label>
-      <input
-        type="text"
-        id="last-name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
+        <label htmlFor="last-name">Last Name:</label>
+        <input
+          type="text"
+          id="last-name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+          data-cy="last-name-input" // Add data-cy attribute for Cypress
+        />
 
-      <button onClick={handleSubmit}>Submit</button>
+        <button type="submit" data-cy="submit-btn">Submit</button> {/* Add data-cy attribute for Cypress */}
+      </form>
 
-      {fullName && <div id="result">Full Name: {fullName}</div>}
+      {isSubmitted && <div id="result" data-cy="result">Full Name: {fullName}</div>} {/* Add data-cy attribute for Cypress */}
     </div>
   );
 }
