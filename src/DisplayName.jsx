@@ -1,49 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './DisplayName.css';
 
 function NameForm() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [fullName, setFullName] = useState('Full Name Display');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
 
-    useEffect(() => {
-        // Set the full name display to empty when the component mounts
-        setFullName('');
-    }, []);
+  const handleSubmit = () => {
+    setFullName(`${firstName} ${lastName}`);
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (firstName.trim() !== '' && lastName.trim() !== '') {
-            const fullName = `${firstName} ${lastName}`;
-            setFullName(fullName);
-        }
-    };
+  return (
+    <div className="container">
+      <label htmlFor="first-name">First Name:</label>
+      <input
+        type="text"
+        id="first-name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+      />
 
-    return (
-        <div id="form-container">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                />
-                <button type="submit">Submit</button>
-            </form>
-            {fullName && (
-                <div id="fullname">
-                    <strong>Full Name: {fullName}</strong>
-                </div>
-            )}
-        </div>
-    );
+      <label htmlFor="last-name">Last Name:</label>
+      <input
+        type="text"
+        id="last-name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+
+      <button onClick={handleSubmit}>Submit</button>
+
+      {fullName && <div id="result">Full Name: {fullName}</div>}
+    </div>
+  );
 }
 
 export default NameForm;
